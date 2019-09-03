@@ -1,0 +1,24 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 20px;
+
+  .row {
+    border: 2px solid #000;
+    padding: 50px 100px 80px 100px;
+    box-shadow: 15px 20px;
+
+    .btn-container {
+      display: flex;
+      justify-content: center;
+
+      .submit-btn {
+        margin-top: 30px;
+        border-radius: 15%;
+        font-size: 20px;
+      }
+    }
+  }
+}
