@@ -18,13 +18,28 @@ class LoadingPage extends React.Component {
           placeholder: "ingrese su contraseña",
           type: "password"
         }
-      ]
+      ],
+      formValues: {}
     };
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange() {}
-  handleSubmit() {}
+  handleChange(evt) {
+    this.setState({
+      formValues: {
+        ...this.state.formValues,
+        [evt.target.name]: [evt.target.value]
+      }
+    });
+  }
+  handleSubmit() {
+    const values = Object.values(this.state.formValues);
+    if (values.includes("admin") && values.includes("password")) {
+      console.log("this.props", this.props);
+    }
+  }
   render() {
+    console.log("this.props", this.props);
     const { formFields } = this.state;
     return (
       <React.Fragment>
