@@ -16,7 +16,9 @@ const UserService = new RandomUser(url);
 
 class App extends React.Component {
   componentDidMount() {
-    console.log("didmount");
+    UserService.fetchUsers(requestSize).then(data =>
+      localStorage.setItem(laboratoriaUsers, JSON.stringify(data))
+    );
   }
   render() {
     return (
@@ -30,7 +32,6 @@ class App extends React.Component {
                 {...props}
                 UserService={UserService}
                 localStorageKey={laboratoriaUsers}
-                requestSize={requestSize}
               />
             )}
           />
