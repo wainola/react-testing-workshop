@@ -1,4 +1,6 @@
 import React from "react";
+import UserBox from "../shared/UserBox";
+import UserInfoBox from "../shared/UserInfoBox";
 
 class Home extends React.Component {
   async componentDidMount() {
@@ -24,8 +26,12 @@ class Home extends React.Component {
           </div>
         </div>
         <div className="user-container">
-          <div className="user-info"></div>
-          <div className="user-form"></div>
+          <div className="user-info">
+            <UserInfoBox />
+          </div>
+          <div className="user-form">
+            <UserBox />
+          </div>
         </div>
       </div>
     );
