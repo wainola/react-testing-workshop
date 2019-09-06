@@ -4,6 +4,10 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import LoadingPage from "../LoadingPage";
 import Home from "../Home";
 
+const { URL: url } = process.evn;
+
+console.log(url);
+
 class App extends React.Component {
   componentDidMount() {
     console.log("didmount");
