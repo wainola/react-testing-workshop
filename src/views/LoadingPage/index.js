@@ -22,24 +22,26 @@ class LoadingPage extends React.Component {
       formValues: {}
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(evt) {
     this.setState({
+      ...this.state,
       formValues: {
         ...this.state.formValues,
         [evt.target.name]: [evt.target.value]
       }
     });
   }
-  handleSubmit() {
+  handleSubmit(evt) {
+    evt.preventDefault();
     const values = Object.values(this.state.formValues);
-    if (values.includes("admin") && values.includes("password")) {
-      console.log("this.props", this.props);
+    if (values[0].includes("admin") && values[1].includes("password")) {
+      this.props.history.push("/home");
     }
   }
   render() {
-    console.log("this.props", this.props);
     const { formFields } = this.state;
     return (
       <React.Fragment>
