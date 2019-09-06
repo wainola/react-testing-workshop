@@ -3,7 +3,17 @@ import React from "react";
 import "./UserInfoBox.scss";
 
 const UserInfoBox = ({
-  user: { name, email, location, login, picture, registered, gender, cell }
+  user: {
+    name = "",
+    email = "",
+    location = "",
+    login = "",
+    picture = "",
+    registered = "",
+    gender = "",
+    cell = ""
+  },
+  noInfo
 }) => (
   <div className="user">
     <div className="user-image">

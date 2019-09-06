@@ -5,21 +5,20 @@ import UserInfoBox from "../shared/UserInfoBox";
 import "./Home.scss";
 
 class Home extends React.Component {
-  async componentDidMount() {
+    componentDidMount() {
     const { localStorageKey, UserService, requestSize } = this.props;
     const users = localStorage.getItem(localStorageKey);
     if (!users) {
-      const users = await UserService.fetchUsers(requestSize);
-      localStorage.setItem(localStorageKey, JSON.stringify(users));
+        console.log('nousers')
+      UserService.fetchUsers(requestSize).then(users => localStorage.setItem(localStorageKey, JSON.stringify(users)))
     }
   }
 
   render() {
-    console.log(this.props);
     const { localStorageKey } = this.props;
-    const users = JSON.parse(localStorage.getItem(localStorageKey)) || [];
+    const users = JSON.parse(localStorage.getItem(localStorageKey)) || []
     const rndIndex = Math.trunc(Math.random() * (50 - 1) + 1);
-    const oneUser = users[rndIndex];
+    const oneUser = !!users.length ? users[rndIndex] : { name: '', email: '', location: '', login: '', picture: '', registered: '', gender: '', cell: '' }
     return (
       <div className="user-container">
         <div className="user-header">
@@ -34,7 +33,7 @@ class Home extends React.Component {
         </div>
         <div className="user-container-info">
           <div className="user-info info-box">
-            <UserInfoBox user={oneUser} />
+            <UserInfoBox user={oneUser} noInfo={!!oneUser.length}/>
           </div>
           <div className="user-info info-form">
             <UserBox />
