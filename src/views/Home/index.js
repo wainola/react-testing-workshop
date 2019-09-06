@@ -13,8 +13,13 @@ class Home extends React.Component {
       localStorage.setItem(localStorageKey, JSON.stringify(users));
     }
   }
+
   render() {
     console.log(this.props);
+    const { localStorageKey } = this.props;
+    const users = JSON.parse(localStorage.getItem(localStorageKey)) || [];
+    const rndIndex = Math.trunc(Math.random() * (50 - 1) + 1);
+    const oneUser = users[rndIndex];
     return (
       <div className="user-container">
         <div className="user-header">
@@ -29,7 +34,7 @@ class Home extends React.Component {
         </div>
         <div className="user-container-info">
           <div className="user-info info-box">
-            <UserInfoBox />
+            <UserInfoBox user={oneUser} />
           </div>
           <div className="user-info info-form">
             <UserBox />

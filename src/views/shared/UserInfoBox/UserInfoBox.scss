@@ -1,0 +1,16 @@
+.user-image {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .image-user {
+    width: 25%;
+  }
+
+  .gender {
+    text-transform: uppercase;
+    color: green;
+    font-size: 30px;
+  }
+}
