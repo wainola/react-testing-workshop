@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React Testing</title>
+    <meta charset="utf-8" />
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(
+        https://fonts.googleapis.com/css?family=Droid+Serif:400,
+        700,
+        400italic
+      );
+      @import url(
+        https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,
+        700,
+        400italic
+      );
+
+      body {
+        font-family: "Droid Serif";
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: "Yanone Kaffeesatz";
+        font-weight: normal;
+      }
+      .remark-code,
+      .remark-inline-code {
+        font-family: "Ubuntu Mono";
+      }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle
+
+# Test en React
+
+---
+
+# Agenda
+
+1. Introducción
+2. Motivación
+3. Herramientas
+4. Testeo de UI
+5. Testeo de instancias
+6. Testeo de eventos
+
+---
+
+# Introducion
+
+* Por qué testear aplicaciones en React?
+* Que diferencias hay entre testear Front versus backend?
+* Cuales son las aproximaciones al testing en React?
+
+---
+
+# Motivacion
+
+* La gracia de la programación frontend versus el backend
+* La necesidad de tener certezas:
+      * certeza de que los componentes funcionales visualizarán lo que tienen que visualizar
+      * certeza de que nuestros formularios procesaran la data que tienen que procesar
+      * certeza de que nuestros componentes se comportaran como esperamos frente a ciertos escenarios de interacción
+* la exagerada importancia visual de una aplicación
+* la subestimación de tareas que visualmente parecen triviales
+
+---
+
+# Herramientas.
+
+* Jest [https://jestjs.io/]()
+* Enzyme [https://airbnb.io/enzyme/]()
+
+---
+
+# Testeo de UI.
+
+* Shallow rendering.
+* Full rendering.
+
+    </textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>
