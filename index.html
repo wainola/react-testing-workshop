@@ -80,8 +80,38 @@ class: center, middle
 
 # Testeo de UI.
 
-* Shallow rendering.
-* Full rendering.
+* Shallow rendering
+      * tratamos a los componentes como una unidad
+      * evitamos testar comportamiento
+      * útil para testear que un componente cumpla con condiciones de rendering especifica
+* Full rendering
+      * ideal para componentes pesados
+      * útil en el caso de componentes que interactuan como muchas APIS
+      * si el componente esta envuelto en un Higher Order Component, también es útil
+      * podemos testear comportamiento
+
+---
+
+# Ejemplo usando Shallow
+
+```js
+describe("<Comp />", () => {
+  let sc;
+  test("Debe tener un h1", () => {
+    sc = shallow(<Comp name="Pepito" />);
+    console.log(sc.find("h1").text());
+    expect(sc.find("h1")).toHaveLength(1);
+  });
+  test("Debe mostrar el nombre Pepito", () => {
+    const [name] = sc
+      .find("h1")
+      .text()
+      .split(" ")
+      .filter(item => item.toLowerCase().includes("pepito"));
+    expect(name).toBe("Pepito");
+  });
+});
+```
 
     </textarea>
     <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
