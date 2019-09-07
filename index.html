@@ -102,14 +102,24 @@ describe("<Comp />", () => {
     console.log(sc.find("h1").text());
     expect(sc.find("h1")).toHaveLength(1);
   });
-  test("Debe mostrar el nombre Pepito", () => {
-    const [name] = sc
-      .find("h1")
-      .text()
-      .split(" ")
-      .filter(item => item.toLowerCase().includes("pepito"));
-    expect(name).toBe("Pepito");
-  });
+});
+```
+
+---
+
+# Ejemplo usando Shallow
+
+Podemos hacer mas que verificar la existencia de estructura de marcado.
+También podemos probar sobre el contenido mismo
+
+```js
+test("Debe mostrar el nombre Pepito", () => {
+  const [name] = sc
+    .find("h1")
+    .text()
+    .split(" ")
+    .filter(item => item.toLowerCase().includes("pepito"));
+  expect(name).toBe("Pepito");
 });
 ```
 
