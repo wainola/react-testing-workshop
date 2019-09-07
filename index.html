@@ -47,7 +47,6 @@ class: center, middle
 3. Herramientas
 4. Testeo de UI
 5. Testeo de instancias
-6. Testeo de eventos
 
 ---
 
@@ -122,6 +121,55 @@ test("Debe mostrar el nombre Pepito", () => {
   expect(name).toBe("Pepito");
 });
 ```
+
+---
+
+# Ejemplo usando Mount (Full rendering)
+
+Tenemos estos dos componentes.
+
+```js
+const Button = ({ text, classStyle }) => (
+  <button className={classStyle}>{text}</button>
+);
+
+const Parent = ({ style, data }) =>
+  data.map((_, idx) => (
+    <Button
+      key={`someKey${idx}`}
+      classStyle={style}
+      text={`Button number ${idx + 1}`}
+    />
+  ));
+```
+
+---
+
+# Testeamos que existan los tres subcomponentes
+
+```js
+test("Deberia renderear 3 botones", () => {
+  const a = [1, 2, 3];
+  mt = mount(<Parent style="funky-class" data={a} />);
+  const btns = mt.find("Button");
+  expect(btns).toHaveLength(3);
+});
+```
+
+---
+
+# Testeamos la existencia de las clases en los componentes
+
+```js
+test("Los tres botones deberian tener clase funky-class", () => {
+  const btns = mt.find("button");
+  btns.forEach(node => expect(node.hasClass("funky-class")).toBe(true));
+});
+```
+---
+
+# Tambien podemos testear instancias como tales.
+
 
     </textarea>
     <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
