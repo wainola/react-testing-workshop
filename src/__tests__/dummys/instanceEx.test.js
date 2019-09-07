@@ -10,6 +10,7 @@ class Comp extends React.Component {
   }
 
   changeName(name, idx) {
+    console.log(this.state.users[idx]);
     const { users } = this.state;
     users[idx].name = name;
     this.setState({
@@ -36,6 +37,21 @@ describe("<Home />", () => {
   let mt;
   test("Deberia mostrar dos <p> y un <h1>", () => {
     mt = mount(<Comp title="El component" />);
-    console.log(mt.debug());
+    const ps = mt.find("p");
+    expect(ps).toHaveLength(2);
+  });
+  test("Podemos cambiar el nombre de uno de los itemes", () => {
+    mt.instance().changeName("marcelito", 1);
+    const {
+      state: { users }
+    } = mt.instance();
+    expect(users[1].name).toBe("marcelito");
+    mt.update();
+    expect(
+      mt
+        .find("p")
+        .at(1)
+        .text()
+    ).toBe("marcelito");
   });
 });
