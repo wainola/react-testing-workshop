@@ -28,6 +28,7 @@
       .remark-code,
       .remark-inline-code {
         font-family: "Ubuntu Mono";
+        font-size: 15px;
       }
     </style>
   </head>
@@ -170,6 +171,43 @@ test("Los tres botones deberian tener clase funky-class", () => {
 
 # Tambien podemos testear instancias como tales.
 
+Supongamos el siguiente componente:
+
+  ```js
+  class Comp extends React.Component {
+    constructor() {
+      super();
+      this.state = {
+        users: [{ name: "pepito" }, { name: "juanito" }]
+      };
+    }
+    changeName(name, idx) {
+      const { users } = this.state;
+      users[idx].name = name;
+      this.setState({
+        ...this.state,
+        users: [...users]
+      });
+    }
+    render() {
+      const { users } = this.state;
+      const { title } = this.props;
+      return (
+        <div className="container">
+          <h3>{title}</h3>
+          {users.map(item => (
+            <p>{item.name}</p>
+          ))}
+        </div>
+      );
+    }
+  }
+  ```
+ ---
+
+ # Podemos testear tanto la vista
+
+ 
 
     </textarea>
     <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
