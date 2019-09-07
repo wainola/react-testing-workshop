@@ -173,7 +173,7 @@ test("Los tres botones deberian tener clase funky-class", () => {
 
 Supongamos el siguiente componente:
 
-  ```js
+```js
   class Comp extends React.Component {
     constructor() {
       super();
@@ -202,12 +202,41 @@ Supongamos el siguiente componente:
       );
     }
   }
-  ```
- ---
+```
+---
 
  # Podemos testear tanto la vista
 
- 
+ ```js
+ test("Deberia mostrar dos <p> y un <h1>", () => {
+  mt = mount(<Comp title="El component" />);
+  const ps = mt.find("p");
+  expect(ps).toHaveLength(2);
+});
+
+```
+
+---
+
+# Podemos testear tambien los métodos internos de la instancia 
+
+```js
+test("Deberia cambiar el nombre de uno de los itemes", () => {
+  mt.instance().changeName("marcelito", 1);
+  const {
+    state: { users }
+  } = mt.instance();
+  expect(users[1].name).toBe("marcelito");
+  mt.update();
+  expect(
+    mt
+      .find("p")
+      .at(1)
+      .text()
+  ).toBe("marcelito");
+});
+```
+
 
     </textarea>
     <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
