@@ -10,25 +10,75 @@ class UserBox extends React.Component {
     this.handleChange = this.handleChange.bind(this);
 
     this.state = {
-      users: {}
+      user: {}
     };
   }
 
   handleChange(evt) {
     this.setState({
-      ...this.state.users,
-      [evt.target.name]: evt.target.value
+      ...this.state,
+      user: {
+        ...this.state.user,
+        [evt.target.name]: evt.target.value
+      }
     });
   }
 
   handleSubmit(evt) {
     evt.preventDefault();
-    if (Object.keys(this.state.users).length === 6) {
+    const { user } = this.state;
+    const { users, localStorageKey } = this.props;
+    if (Object.keys(user).length === 6) {
+      const { user: userToChange } = this.props;
+      const userModified = Object.keys(user).reduce((acc, item) => {
+        switch (item) {
+          case "first":
+            userToChange.name[item] = user[item];
+            acc = { ...acc, ...userToChange };
+            return acc;
+          case "last":
+            userToChange.name[item] = user[item];
+            acc = { ...acc, ...userToChange };
+            return acc;
+          case "street":
+            userToChange.location[item] = user[item];
+            acc = { ...acc, ...userToChange };
+            return acc;
+          case "cell":
+            userToChange[item] = user[item];
+            acc = { ...acc, ...userToChange };
+            return acc;
+          case "username":
+            userToChange.login[item] = user[item];
+            acc = { ...acc, ...userToChange };
+            return acc;
+          case "password":
+            userToChange.login[item] = user[item];
+            acc = { ...acc, ...userToChange };
+            return acc;
+          default:
+            return null;
+        }
+        return acc;
+      }, {});
+      const {
+        id: { value }
+      } = userModified;
+      const index = users.findIndex(item => item.id.value === value);
+      console.log(index);
+      const newUsers = users.map((item, idx) =>
+        idx !== index ? item : userModified
+      );
+      localStorage.setItem(localStorageKey, JSON.stringify(newUsers));
     }
   }
   render() {
-    console.log(this.props);
-    return <UserUIBox />;
+    return (
+      <UserUIBox
+        handleSubmit={this.handleSubmit}
+        handleChange={this.handleChange}
+      />
+    );
   }
 }
 
