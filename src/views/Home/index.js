@@ -38,7 +38,7 @@ class Home extends React.Component {
             <UserInfoBox user={oneUser} noInfo={!!oneUser.length} />
           </div>
           <div className="user-info info-form">
-            <UserBox />
+            <UserBox localStorageKey={localStorageKey} />
           </div>
         </div>
       </div>
