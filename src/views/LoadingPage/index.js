@@ -26,7 +26,6 @@ class LoadingPage extends React.Component {
   }
 
   handleChange(evt) {
-    console.log("handleChange", evt.target);
     this.setState(
       {
         ...this.state,
@@ -34,12 +33,12 @@ class LoadingPage extends React.Component {
           ...this.state.formValues,
           [evt.target.name]: [evt.target.value]
         }
-      },
-      () => console.log(this.state.formValues)
+      }
     );
   }
   handleSubmit(evt) {
     evt.preventDefault();
+    console.log('submit', this.state)
     const values = Object.values(this.state.formValues);
     if (values[0].includes("admin") && values[1].includes("password")) {
       this.props.history.push("/home");
