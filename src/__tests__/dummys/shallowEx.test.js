@@ -16,7 +16,7 @@ describe("<Comp />", () => {
     const rt = result.text();
     const expetedText = "hola mi nombre es pepito";
     expect(result).toHaveLength(1);
-    expect(rt.toLowerCase()).toEquals(expetedText);
+    expect(rt.toLowerCase().trim()).toBe(expetedText);
   });
   test("Debe mostrar el nombre Pepito", () => {
     const [name] = sc

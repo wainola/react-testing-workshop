@@ -39,19 +39,13 @@ describe("<Comp />", () => {
     const ps = mt.find("p");
     expect(ps).toHaveLength(2);
   });
-  test.only("Deberia cambiar el nombre de uno dentro de los parrafos", () => {
+  test("Deberia cambiar el nombre de uno dentro de los parrafos", () => {
     const mounted = mount(<Comp title="El componente 2" />);
     mounted.instance().changeName("marcelito", 1);
+    mounted.update();
     const {
       state: { users }
-    } = mt.instance();
+    } = mounted.instance();
     expect(users[1].name).toBe("marcelito");
-    mt.update();
-    expect(
-      mt
-        .find("p")
-        .at(1)
-        .text()
-    ).toBe("marcelito");
   });
 });
