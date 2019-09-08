@@ -26,13 +26,17 @@ class LoadingPage extends React.Component {
   }
 
   handleChange(evt) {
-    this.setState({
-      ...this.state,
-      formValues: {
-        ...this.state.formValues,
-        [evt.target.name]: [evt.target.value]
-      }
-    });
+    console.log("handleChange", evt.target);
+    this.setState(
+      {
+        ...this.state,
+        formValues: {
+          ...this.state.formValues,
+          [evt.target.name]: [evt.target.value]
+        }
+      },
+      () => console.log(this.state.formValues)
+    );
   }
   handleSubmit(evt) {
     evt.preventDefault();
