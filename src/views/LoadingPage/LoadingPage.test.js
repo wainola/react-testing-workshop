@@ -32,7 +32,6 @@ describe("<LoadingPage />", () => {
       expect(value).toBe('password')
   })
   test('Deberia simular el evento Submit', () => {
-      console.log(mountedComp.props()) 
       mountedComp.setState({ formValues: { usuario : ['admin'], password: ['password']}})
       mountedComp.find('form').simulate('submit')
       expect(mountedComp.props().history.push).toHaveBeenCalled()

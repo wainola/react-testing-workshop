@@ -38,7 +38,6 @@ class LoadingPage extends React.Component {
   }
   handleSubmit(evt) {
     evt.preventDefault();
-    console.log('submit', this.state)
     const values = Object.values(this.state.formValues);
     if (values[0].includes("admin") && values[1].includes("password")) {
       this.props.history.push("/home");
