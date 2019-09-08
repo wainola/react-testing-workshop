@@ -1,5 +1,5 @@
 import React from "react";
-import { shallow, mount } from "enzyme";
+import { mount } from "enzyme";
 
 class Comp extends React.Component {
   constructor() {
@@ -10,7 +10,6 @@ class Comp extends React.Component {
   }
 
   changeName(name, idx) {
-    console.log(this.state.users[idx]);
     const { users } = this.state;
     users[idx].name = name;
     this.setState({
@@ -33,15 +32,16 @@ class Comp extends React.Component {
   }
 }
 
-describe("<Home />", () => {
+describe("<Comp />", () => {
   let mt;
-  test("Deberia mostrar dos <p> y un <h1>", () => {
+  test("Deberia mostrar dos <p> y un <h3>", () => {
     mt = mount(<Comp title="El component" />);
     const ps = mt.find("p");
     expect(ps).toHaveLength(2);
   });
-  test("Podemos cambiar el nombre de uno de los itemes", () => {
-    mt.instance().changeName("marcelito", 1);
+  test.only("Deberia cambiar el nombre de uno dentro de los parrafos", () => {
+    const mounted = mount(<Comp title="El componente 2" />);
+    mounted.instance().changeName("marcelito", 1);
     const {
       state: { users }
     } = mt.instance();

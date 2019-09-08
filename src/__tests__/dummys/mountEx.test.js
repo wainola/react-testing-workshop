@@ -16,10 +16,10 @@ const Parent = ({ style, data }) =>
 
 describe("<Paren />", () => {
   let mt;
+  let sc;
   test("Deberia renderear 3 botones", () => {
     const a = [1, 2, 3];
     mt = mount(<Parent style="funky-class" data={a} />);
-    // console.log(mt.debug());
     const btns = mt.find("Button");
     expect(btns).toHaveLength(3);
   });

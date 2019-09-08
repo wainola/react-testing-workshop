@@ -9,10 +9,14 @@ const Comp = ({ name }) => (
 
 describe("<Comp />", () => {
   let sc;
-  test("Debe tener un h1", () => {
+  test.only("Debe tener un h1", () => {
     sc = shallow(<Comp name="Pepito" />);
-    console.log(sc.find("h1").text());
-    expect(sc.find("h1")).toHaveLength(1);
+
+    const result = sc.find("h1");
+    const rt = result.text();
+    const expetedText = "hola mi nombre es pepito";
+    expect(result).toHaveLength(1);
+    expect(rt.toLowerCase()).toEquals(expetedText);
   });
   test("Debe mostrar el nombre Pepito", () => {
     const [name] = sc
